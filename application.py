@@ -16,18 +16,29 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 @app.route("/")
 def index():
     return render_template("index.html")
-
+    
 @app.route("/plot", methods= ['POST'])
 def plot():
-    x = int(request.form.get("inp1"))
-    y = int(request.form.get("inp2"))
+    xs = request.form.get("inp1")
+    ys = request.form.get("inp2")
+    try:
+        if ',' in xs:
+            xl = [int(i.strip()) for i in xs.split(',') if i]
+            yl = [int(i.strip()) for i in ys.split(',') if i]
+        else:
+            xl = [int(i.strip()) for i in xs.split(' ') if i]
+            yl = [int(i.strip()) for i in ys.split(' ') if i]
+        if len(xl) != len(yl): raise ValueError
+    except:
+        return render_template("error.html", message="wrong input")
     plt.style.use('dark_background')
-    plt.scatter([x], [y])
-    plt.title("Scatter Plot")
+    plt.plot(xl, yl)
+    plt.title("Line Plot")
     plt.xlabel("X axis")
     plt.ylabel("Y axis")
     plt.grid('True')
-    plt.text(x,y, f"({x},{y})" )
+    for x, y in zip(xl, yl):
+        plt.text(x,y, f"({x},{y})" )
     imgname  = 'static/image.jpg'
     plt.savefig(imgname)
     #return render_template("plot.html",  img_url = url_for('static', filename='image.jpg')) #this too is correct
