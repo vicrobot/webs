@@ -1,0 +1,19 @@
+#form{
+	color:orange;
+	text-align: centre;
+	font-size:3em;
+	margin-left:2em;
+	font-family:ubuntu;
+}
+
+.inp{
+    color: blue;
+    text-align: centre;
+    font-size:0.5em;
+    font-family:ubuntu;
+}
+
+.button{
+    font-size:0.5em;
+    font-family:ubuntu;
+}
