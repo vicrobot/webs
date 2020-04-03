@@ -11,9 +11,12 @@
     text-align: centre;
     font-size:0.5em;
     font-family:ubuntu;
+    border-radius:10px;
+    
 }
 
 .button{
     font-size:0.5em;
     font-family:ubuntu;
+    border-radius:20px;
 }

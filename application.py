@@ -15,7 +15,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", list_1 = enumerate(['sin(x)','cos(x)', 'tan(x)']))
     
 @app.route("/plot", methods= ['POST'])
 def plot():

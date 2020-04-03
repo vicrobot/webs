@@ -6,14 +6,38 @@
 </title>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
 
+
 {%endblock%}
 {%block body%}
 <h1> Plot points on 2-D cartesian space </h1>
 
 <form id = "form" action = "{{url_for('plot')}}", method = "post">
-    <input class = "inp" name = "inp1"  placeholder = "Put x coords"></input>
-    <input class = "inp" name = "inp2"  placeholder = "Put y coords"></input>
-    <button class ="button" > Plot Point </button>
+    <input class = "inp" name = "inp1"  placeholder = " Put x coords"></input>
+    <input class = "inp" name = "inp2"  placeholder = " Put y coords"></input>
+    <button class ="button" > Plot Points </button>
 </form>
+
+<div id="function_plotting">
+<h2> Plot a function </h2>
+<select class = "select" name = "inp1">
+    {%for j,i in list_1%}
+        <option value = "{{i}}"> {{i}} </option>
+    {%endfor%}
+</select>
+<button class ="button" onclick = "func()" > Plot function </button>
+</div>
+
+<script>
+
+function func(){
+    const div_s = document.querySelector("#function_plotting");
+    const img_n = document.createElement("p");
+    const select_t = document.querySelector(".select");
+    var s = select_t.value;
+    img_n.innerHTML = "<p> " + s + " </p> ";
+    div_s.appendChild(img_n);
+}
+</script>
+
 
 {%endblock%}
